@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 설문 응답. /admin 에 로그인 보호를 두지 않기로 했으므로 읽기도 열려 있다.
+    // 응답에는 이름·연락처 같은 개인정보를 담지 않는다.
+    match /survey_responses/{participantId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.participantId == participantId
+                            && request.resource.size() < 200000;
+      allow delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

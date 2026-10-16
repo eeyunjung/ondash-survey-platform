@@ -1,0 +1,1691 @@
+/* 설문 플랫폼 전용 스타일. 모든 규칙은 .survey 아래에 둔다. */
+
+.survey {
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --ink-3: #64748b;
+  --ink-4: #94a3b8;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #f1f5f9;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  min-height: 100dvh;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+    'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+body:has(.survey) {
+  margin: 0;
+}
+
+.survey *,
+.survey *::before,
+.survey *::after {
+  box-sizing: border-box;
+}
+
+.survey h1,
+.survey h2,
+.survey h3,
+.survey p,
+.survey ul,
+.survey ol,
+.survey dl,
+.survey dd,
+.survey fieldset,
+.survey legend {
+  margin: 0;
+  padding: 0;
+}
+
+.survey fieldset {
+  min-width: 0;
+  border: 0;
+}
+
+.survey button,
+.survey textarea,
+.survey input {
+  font: inherit;
+  color: inherit;
+}
+
+.survey :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@keyframes sv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.survey .sv-rise {
+  animation: sv-rise 450ms var(--ease) both;
+}
+
+@keyframes sv-delay-hold {
+  from { opacity: 0; }
+}
+
+.survey .sv-delay-2 {
+  animation-delay: 140ms;
+}
+
+.survey .sv-delay-3 {
+  animation-delay: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .survey *,
+  .survey *::before,
+  .survey *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── 상단 ─────────────────────────────────────────────────────────────── */
+
+.survey .sv-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--surface);
+}
+
+.survey .sv-top-brand {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.survey .sv-top-step {
+  color: var(--ink-3);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.survey .sv-progress {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 3px;
+  background: var(--line);
+}
+
+.survey .sv-progress span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transition: width 500ms var(--ease);
+}
+
+.survey .sv-main {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
+}
+
+.survey .sv-main-wide {
+  max-width: 1320px;
+  padding-top: 20px;
+}
+
+/* ── 단계 공통 ────────────────────────────────────────────────────────── */
+
+.survey .sv-step h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.survey .sv-lead {
+  margin-top: 10px;
+  color: var(--ink-2);
+}
+
+.survey .sv-step-body {
+  display: grid;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.survey .sv-step-body > *,
+.survey .sv-step-foot {
+  animation: sv-rise 500ms var(--ease) both;
+}
+
+.survey .sv-step-body > :nth-child(1) { animation-delay: 80ms; }
+.survey .sv-step-body > :nth-child(2) { animation-delay: 150ms; }
+.survey .sv-step-body > :nth-child(3) { animation-delay: 220ms; }
+.survey .sv-step-body > :nth-child(4) { animation-delay: 290ms; }
+.survey .sv-step-body > :nth-child(5) { animation-delay: 360ms; }
+.survey .sv-step-body > :nth-child(n + 6) { animation-delay: 430ms; }
+.survey .sv-step-foot { animation-delay: 300ms; }
+
+.survey .sv-step-foot {
+  margin-top: 36px;
+}
+
+.survey .sv-note {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.survey .sv-missing {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.survey .sv-bullets {
+  display: grid;
+  gap: 12px;
+  padding-left: 20px;
+  color: var(--ink-2);
+}
+
+.survey .sv-numbered {
+  list-style: decimal;
+}
+
+.survey .sv-terms {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.survey .sv-terms dt {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.survey .sv-terms dd {
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.survey .sv-btn {
+  padding: 12px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 180ms var(--ease),
+    background-color 180ms var(--ease);
+}
+
+.survey .sv-btn:active:not(:disabled) {
+  transform: scale(0.975);
+}
+
+.survey .sv-btn:disabled {
+  color: var(--ink-4);
+  cursor: default;
+}
+
+.survey .sv-btn-primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.survey .sv-btn-primary:disabled {
+  border-color: var(--line-strong);
+  background: var(--line-strong);
+  color: var(--surface);
+}
+
+/* ── 입력 ─────────────────────────────────────────────────────────────── */
+
+.survey .sv-field {
+  display: grid;
+  gap: 10px;
+}
+
+.survey .sv-field-label {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.survey .sv-field legend {
+  margin-bottom: 10px;
+}
+
+.survey .sv-options {
+  display: grid;
+  gap: 8px;
+}
+
+.survey .sv-options-row {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.survey .sv-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 180ms var(--ease);
+}
+
+.survey .sv-option:has(input:checked) {
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.survey .sv-option input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--ink);
+}
+
+.survey .sv-option-inline {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.survey textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.survey textarea:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+
+/* 7점 척도 */
+
+.survey .sv-scale legend {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.survey .sv-scale-sub {
+  display: block;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-scale-points {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.survey .sv-point {
+  position: relative;
+  cursor: pointer;
+}
+
+.survey .sv-point input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.survey .sv-point span {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.survey .sv-point input:checked + span {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 700;
+}
+
+.survey .sv-point input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.survey .sv-scale-anchors {
+  position: relative;
+  height: 16px;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font-size: 11px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.survey .sv-scale-anchors span {
+  position: absolute;
+  top: 0;
+}
+
+.survey .sv-scale-anchors b {
+  color: var(--ink-2);
+  font-weight: 700;
+}
+
+.survey .sv-scale-anchors [data-point='1'] {
+  left: 0;
+}
+
+.survey .sv-scale-anchors [data-point='4'] {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.survey .sv-scale-anchors [data-point='7'] {
+  right: 0;
+}
+
+/* ── 비교 평가 ────────────────────────────────────────────────────────── */
+
+.survey .sv-eval-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.survey .sv-eval-count {
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.survey .sv-dots {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+.survey .sv-dots li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-4);
+  font-size: 12px;
+  transition: color 400ms var(--ease);
+}
+
+.survey .sv-dots li span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition:
+    background-color 400ms var(--ease),
+    transform 400ms var(--ease);
+}
+
+.survey .sv-dots li[data-state='current'] {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.survey .sv-dots li[data-state='current'] span {
+  background: var(--ink);
+  transform: scale(1.35);
+}
+
+.survey .sv-dots li[data-state='done'] {
+  color: var(--ink-3);
+}
+
+.survey .sv-dots li[data-state='done'] span {
+  background: var(--ink-3);
+}
+
+.survey .sv-stage {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.survey .sv-eyebrow {
+  margin-bottom: 12px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-intro {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 760px;
+  margin: 12px auto 0;
+}
+
+.survey .sv-prompt {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.survey .sv-prompt dl {
+  display: grid;
+  gap: 8px;
+}
+
+.survey .sv-prompt dl div {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.survey .sv-prompt dt {
+  color: var(--ink-4);
+  font-size: 13px;
+}
+
+.survey .sv-prompt dd {
+  color: var(--ink-2);
+}
+
+.survey .sv-prompt-situation {
+  color: var(--ink-2);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.survey .sv-prompt-question > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-prompt-situation + .sv-prompt-question {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.survey .sv-prompt-question {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.survey .sv-brief {
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: var(--surface-3);
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.survey .sv-brief p {
+  font-weight: 600;
+}
+
+.survey .sv-brief ol {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--ink-3);
+}
+
+.survey .sv-recap {
+  display: grid;
+  gap: 2px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: var(--surface-3);
+  animation: sv-rise 450ms var(--ease) both;
+}
+
+.survey .sv-recap span {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.survey .sv-recap strong {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* 왼쪽: 답변, 오른쪽: 평가 */
+
+.survey .sv-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.survey .sv-pane {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.survey .sv-pane h2 {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.survey .sv-pane h2 span {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.survey .sv-pane-rate {
+  position: sticky;
+  top: 20px;
+  display: grid;
+  gap: 8px;
+  padding: 16px 22px;
+}
+
+.survey .sv-pane-rate h2 {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+.survey .sv-ratings {
+  display: grid;
+  gap: 8px;
+}
+
+/* 평가 패널은 한 화면에 들어오도록 척도를 컴팩트하게 둔다. */
+.survey .sv-pane-rate .sv-point span {
+  height: 30px;
+}
+
+.survey .sv-pane-rate .sv-scale-points {
+  margin-top: 6px;
+}
+
+.survey .sv-ratings .sv-scale {
+  animation: sv-rise 450ms var(--ease) both;
+}
+
+.survey .sv-ratings .sv-scale:nth-child(1) { animation-delay: 220ms; }
+.survey .sv-ratings .sv-scale:nth-child(2) { animation-delay: 300ms; }
+.survey .sv-ratings .sv-scale:nth-child(3) { animation-delay: 380ms; }
+.survey .sv-ratings .sv-scale:nth-child(4) { animation-delay: 460ms; }
+
+.survey .sv-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.survey .sv-actions .sv-btn-primary {
+  flex: 1;
+}
+
+/* 최선 답변을 고르는 장면에서 답변을 다시 훑어보는 탭 */
+
+.survey .sv-peek {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 18px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--surface-3);
+}
+
+.survey .sv-peek button {
+  padding: 9px 4px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.survey .sv-peek button[aria-selected='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* 최선 답변을 고르는 장면에서 답변을 오갈 때는 움직임 없이 바로 바뀐다. */
+.survey .sv-peek-body,
+.survey .sv-peek-body * {
+  animation: none !important;
+}
+
+@media (max-width: 900px) {
+  .survey .sv-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .survey .sv-pane {
+    padding: 20px;
+  }
+  .survey .sv-pane-rate {
+    position: static;
+  }
+  .survey .sv-prompt dl div {
+    grid-template-columns: 96px 1fr;
+  }
+}
+
+/* 답변 본문. 세 시스템의 답변을 같은 카드 형식으로 보여 준다. */
+
+.survey .sv-md {
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.survey .sv-md > * + * {
+  margin-top: 10px;
+}
+
+/* 답변이 한 덩어리로 튀어나오지 않고, 문단마다 차례로 나타나게 한다. */
+.survey .sv-md > * {
+  animation: sv-rise 500ms var(--ease) both;
+  animation-delay: 700ms;
+}
+
+.survey .sv-md > :nth-child(1) { animation-delay: 150ms; }
+.survey .sv-md > :nth-child(2) { animation-delay: 230ms; }
+.survey .sv-md > :nth-child(3) { animation-delay: 310ms; }
+.survey .sv-md > :nth-child(4) { animation-delay: 390ms; }
+.survey .sv-md > :nth-child(5) { animation-delay: 470ms; }
+.survey .sv-md > :nth-child(6) { animation-delay: 550ms; }
+.survey .sv-md > :nth-child(7) { animation-delay: 630ms; }
+
+.survey .sv-md strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.survey .sv-md h1,
+.survey .sv-md h2,
+.survey .sv-md h3,
+.survey .sv-md h4 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.survey .sv-md ul,
+.survey .sv-md ol {
+  display: grid;
+  gap: 6px;
+  padding-left: 20px;
+}
+
+.survey .sv-md li > * + * {
+  margin-top: 4px;
+}
+
+.survey .sv-md code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--surface-3);
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.survey .sv-md blockquote {
+  margin: 10px 0 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--line-strong);
+  color: var(--ink-3);
+}
+
+.survey .sv-md hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.survey .sv-linktext {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+/* ── 완료 ─────────────────────────────────────────────────────────────── */
+
+.survey .sv-code {
+  display: grid;
+  gap: 2px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.survey .sv-code span {
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-code strong {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── 관리자 ───────────────────────────────────────────────────────────── */
+
+.survey.sv-admin {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+  font-size: 14px;
+}
+
+.survey .sv-admin-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.survey .sv-admin-head h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.survey .sv-admin-head p {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.survey .sv-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.survey .sv-admin-actions .sv-btn {
+  padding: 9px 14px;
+  font-size: 13px;
+}
+
+.survey .sv-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.survey .sv-tiles div {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.survey .sv-tiles dt {
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-tiles dd {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.survey .sv-admin-section {
+  display: grid;
+  gap: 10px;
+  margin-top: 36px;
+}
+
+.survey .sv-admin-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.survey .sv-admin-section h2 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.survey .sv-empty {
+  padding: 28px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 14px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.survey .sv-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.survey .sv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.survey .sv-table th,
+.survey .sv-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.survey .sv-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.survey .sv-table thead th {
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-table tbody th {
+  font-weight: 600;
+}
+
+.survey .sv-table .num {
+  text-align: right;
+}
+
+.survey .sv-table .group {
+  border-left: 1px solid var(--line);
+}
+
+.survey .sv-table thead th.group[colspan] {
+  text-align: center;
+}
+
+.survey .sv-table-dense th,
+.survey .sv-table-dense td {
+  padding: 8px 10px;
+}
+
+.survey .sv-sd {
+  margin-left: 6px;
+  color: var(--ink-4);
+  font-size: 12px;
+}
+
+.survey .sv-sub {
+  display: block;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ── 설문 안내 ────────────────────────────────────────────────────────── */
+
+.survey .sv-help-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.survey .sv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(15 23 42 / 0.4);
+  animation: sv-fade 300ms var(--ease) both;
+}
+
+@keyframes sv-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.survey .sv-dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  max-height: 88dvh;
+  border-radius: 20px;
+  background: var(--surface);
+  animation: sv-rise 450ms var(--ease) both;
+}
+
+.survey .sv-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.survey .sv-dialog-head h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.survey .sv-dialog-head .sv-btn {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.survey .sv-dialog-body {
+  display: grid;
+  gap: 24px;
+  padding: 22px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.survey .sv-dialog-body h3 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.survey .sv-dialog-body p,
+.survey .sv-dialog-body li,
+.survey .sv-dialog-body dd {
+  color: var(--ink-2);
+}
+
+.survey .sv-dialog-body ol,
+.survey .sv-dialog-body ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+}
+
+.survey .sv-dialog-body dl {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.survey .sv-dialog-body dt {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ── 모바일 평가 (답변을 끝까지 읽은 뒤 그 아래에서 한 항목씩) ─────────── */
+
+.survey .sv-sheet {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  animation: sv-rise 450ms var(--ease) both;
+}
+
+.survey .sv-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.survey .sv-sheet-head strong {
+  font-weight: 700;
+}
+
+.survey .sv-sheet-steps {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.survey .sv-sheet-steps button {
+  position: relative;
+  width: 28px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.survey .sv-sheet-steps button::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  transition: background-color 300ms var(--ease);
+}
+
+.survey .sv-sheet-steps button[data-state='done']::after {
+  background: var(--ink-3);
+}
+
+.survey .sv-sheet-steps button[aria-current='step']::after {
+  background: var(--ink);
+}
+
+.survey .sv-sheet-body .sv-scale legend {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.survey .sv-sheet-body .sv-point span {
+  height: 46px;
+}
+
+.survey .sv-sheet-done {
+  display: grid;
+  gap: 12px;
+}
+
+.survey .sv-sheet-done p {
+  color: var(--ink-2);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.survey .sv-sheet-back {
+  justify-self: start;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* 좁은 화면에서는 상황 문장을 줄이고 질문만 남겨 한 화면의 정보를 덜어 낸다. */
+@media (max-width: 900px) {
+  .survey .sv-recap {
+    padding: 12px 16px;
+  }
+  .survey .sv-recap strong {
+    font-size: 16px;
+  }
+  .survey .sv-dots {
+    gap: 10px;
+  }
+}
+
+/* ── 상황 안내 ────────────────────────────────────────────────────────── */
+
+.survey .sv-chip {
+  display: inline-block;
+  margin: 0 8px 4px 0;
+  padding: 3px 12px;
+  border-radius: 14px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.survey .sv-prompt-situation .sv-chip {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  font-size: inherit;
+}
+
+.survey .sv-prompt-situation .sv-chip + p {
+  margin-top: 10px;
+}
+
+.survey .sv-guide {
+  display: grid;
+  gap: 12px;
+}
+
+.survey .sv-guide h2 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.survey .sv-kinds {
+  display: grid;
+  gap: 10px;
+}
+
+.survey .sv-kinds div {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.survey .sv-kinds dt {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.survey .sv-kinds dd {
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+/* ── 모바일: 스크롤 최소화 ────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .survey .sv-top {
+    padding: 10px 16px;
+  }
+
+  .survey .sv-main {
+    padding: 18px 16px 40px;
+  }
+
+  .survey .sv-main-wide {
+    padding-top: 12px;
+  }
+
+  .survey .sv-step h1 {
+    font-size: 21px;
+  }
+
+  .survey .sv-step-body {
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .survey .sv-step-foot {
+    margin-top: 24px;
+  }
+
+  .survey .sv-stage {
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .survey .sv-prompt {
+    margin-top: 4px;
+    padding: 20px;
+  }
+
+  .survey .sv-prompt-situation {
+    font-size: 15px;
+  }
+
+  .survey .sv-prompt-situation + .sv-prompt-question {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .survey .sv-prompt-question {
+    font-size: 22px;
+  }
+
+  .survey .sv-brief {
+    padding: 14px 16px;
+  }
+
+  .survey .sv-brief ol {
+    display: none;
+  }
+
+  .survey .sv-pane {
+    padding: 16px;
+  }
+
+  .survey .sv-pane h2 {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .survey .sv-sheet {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .survey .sv-sheet-body .sv-point span {
+    height: 42px;
+  }
+
+  .survey .sv-option {
+    padding: 10px 12px;
+  }
+
+  .survey .sv-terms {
+    padding: 16px;
+  }
+
+  .survey .sv-kinds div {
+    padding: 12px 14px;
+  }
+}
+
+/* ── 최선 답변 선택: 한 줄 분할 버튼 ───────────────────────────────────── */
+
+.survey .sv-seg-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.7fr;
+  gap: 6px;
+}
+
+.survey .sv-seg {
+  position: relative;
+  cursor: pointer;
+}
+
+.survey .sv-seg input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.survey .sv-seg span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 4px 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.3;
+  text-align: center;
+  transition:
+    background-color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.survey .sv-seg input:checked + span {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 700;
+}
+
+.survey .sv-seg input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .survey .sv-seg span {
+    font-size: 13px;
+  }
+}
+
+/* ── 개편: 안내·문항 보조 스타일 ──────────────────────────────────────── */
+
+.survey .sv-field-hint {
+  display: block;
+  margin-top: -4px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.survey .sv-section {
+  display: grid;
+  gap: 28px;
+}
+
+.survey .sv-section-title {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.survey .sv-scale-legend {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.survey .sv-prompt-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.survey .sv-prompt-label .sv-chip {
+  margin: 0;
+}
+
+.survey .sv-prompt-situation p strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.survey .sv-recap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.survey .sv-recap strong {
+  flex-basis: 100%;
+}
+
+.survey .sv-recap .sv-chip {
+  margin: 0;
+}
+
+.survey .sv-dialog-body .sv-btn {
+  justify-self: end;
+  width: 100%;
+}
+
+/* ── 파일럿 전용 처음으로 버튼 ────────────────────────────────────────── */
+
+.survey .sv-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 420px) {
+  .survey .sv-top-actions .sv-help-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ── 용어 설명 ────────────────────────────────────────────────────────── */
+
+.survey .sv-gloss-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.survey .sv-recap .sv-gloss-list {
+  flex-basis: 100%;
+  margin-top: 2px;
+}
+
+.survey .sv-gloss {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.survey .sv-gloss b {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+.survey .sv-gloss-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--ink-3);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* 답변을 하나씩 읽는 화면은 한 칸만 쓴다. */
+.survey .sv-split-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.survey .sv-reasons {
+  display: grid;
+  gap: 16px;
+}
+
+.survey .sv-reasons h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.survey .sv-reasons ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+
+/* 서비스 의견: 서비스 답변 다시 보기(접이식) */
+.survey .sv-recall {
+  display: grid;
+  gap: 6px;
+}
+
+.survey .sv-recall-row {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.survey .sv-recall-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.survey .sv-recall-no {
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.survey .sv-recall-q {
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.survey .sv-recall-pos {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 펼친 답변은 화면 높이를 넘기지 않고 안에서만 스크롤한다. */
+.survey .sv-recall-body {
+  max-height: 32vh;
+  overflow-y: auto;
+  padding: 4px 14px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+/* 척도 문항의 보조 설명은 질문 바로 아래, 척도 위에 둔다. */
+.survey .sv-scale-hint {
+  margin: -2px 0 10px;
+}
+
+/* 질문 문구로 쓰는 척도: 일반 질문(.sv-field-label)과 같은 크기와 굵기 */
+.survey .sv-scale.sv-scale-question legend {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.survey .sv-hint-line {
+  display: block;
+}
+
+/* ── 임시 이동 바 ─────────────────────────────────────────────────────── */
+.survey .sv-devbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  max-width: 960px;
+  margin: 10px auto 0;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.survey .sv-devbar-label {
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.survey .sv-devbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.survey .sv-chip {
+  padding: 5px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.survey .sv-chip:hover {
+  border-color: var(--ink-3);
+}
+.survey .sv-chip.on {
+  border-color: transparent;
+  background: var(--ink);
+  color: #fff;
+}
+.survey .sv-chip-reset {
+  margin-left: auto;
+  color: var(--ink-3);
+}
+
+.survey .sv-top-pill {
+  display: inline-block;
+  margin: 4px 0 0;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}

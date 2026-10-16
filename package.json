@@ -1,0 +1,24 @@
+{
+  "name": "ondash-survey-platform",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "firebase deploy"
+  },
+  "dependencies": {
+    "firebase": "^13.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-markdown": "^10.1.0",
+    "remark-cjk-friendly": "^2.3.2",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.4"
+  }
+}
